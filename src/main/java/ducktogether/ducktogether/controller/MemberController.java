@@ -20,4 +20,9 @@ public class MemberController {
         Member savedMember = memberService.signUp(member);
         return new ResponseEntity<>(savedMember, HttpStatus.CREATED);
     }
+
+    @GetMapping("/test")
+    public String test(){
+        return "test";
+    }
 }
