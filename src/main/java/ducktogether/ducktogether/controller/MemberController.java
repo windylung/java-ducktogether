@@ -16,9 +16,13 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/signup")
-    public ResponseEntity<Member> signUp(@RequestBody Member member) {
-        Member savedMember = memberService.signUp(member);
-        return new ResponseEntity<>(savedMember, HttpStatus.CREATED);
+    public ResponseEntity<?> signUp(@RequestBody Member member) {
+        try {
+            Member savedMember = memberService.signUp(member);
+            return new ResponseEntity<>(savedMember, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("User registration failed", HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/test")
