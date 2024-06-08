@@ -26,7 +26,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable) // CSRF 비활성화
                 .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/api/signup", "/login", "/signup", "/user", "/error").permitAll() // 인증 없이 접근 가능
+                        .requestMatchers("/**").permitAll() // 인증 없이 접근 가능
                         .anyRequest().authenticated() // 그 외의 요청은 인증 필요
                 )
                 .formLogin(AbstractHttpConfigurer::disable); // 폼 로그인 비활성화
